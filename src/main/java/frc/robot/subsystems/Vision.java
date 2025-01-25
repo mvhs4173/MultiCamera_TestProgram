@@ -22,6 +22,7 @@ public class Vision extends SubsystemBase {
   /** Creates a new Vision. */
   public Vision(String cameraName) {
     camera = new PhotonCamera(cameraName);
+    
   }
   public boolean hasTargets(){
     return m_hasTargets;
@@ -85,5 +86,6 @@ public class Vision extends SubsystemBase {
     m_hasTargets = m_result.hasTargets();
     SmartDashboard.putBoolean("Has Targets", m_hasTargets);
     SmartDashboard.putNumber("yaw", getYaw());
+    SmartDashboard.putBoolean("Camera is connected", camera.isConnected());
   }
 }

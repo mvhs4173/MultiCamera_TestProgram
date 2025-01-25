@@ -26,6 +26,7 @@ public class RobotContainer {
   private final Vision m_vision = new Vision("left");
   
 
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
@@ -33,6 +34,8 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
+    SmartDashboard.putData("Vision subsystem", m_vision);
+    SmartDashboard.putData("Example subsystem", m_exampleSubsystem);
     configureBindings();
     SmartDashboard.putString("directionToTarget", "Not looking");
   }
@@ -53,8 +56,9 @@ public class RobotContainer {
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
-    m_driverController.a().whileTrue(m_vision.aimAtAprilTag(4));
+    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand().withName("Example command"));
+    m_driverController.a().whileTrue(m_vision.aimAtAprilTag(4).withName("Aim at 4"));
+    
     
 
 
